@@ -77,13 +77,41 @@ print(mydb)
 # ES2.to_csv('ES2.csv')
 # ES3.to_csv('ES3.csv')
 # ES4.to_csv('ES4.csv')
+# NQ1.to_csv('NQ1.csv')
+# NQ2.to_csv('NQ2.csv')
+# CL1.to_csv('CL1.csv')
+# CL2.to_csv('CL2.csv')
+# CL3.to_csv('CL3.csv')
+# CL4.to_csv('CL4.csv')
+# NG1.to_csv('NG1.csv')
+# NG2.to_csv('NG2.csv')
+# NG3.to_csv('NG3.csv')
+# NG4.to_csv('NG4.csv')
+# GC1.to_csv('GC1.csv')
+# GC2.to_csv('GC2.csv')
+# GC3.to_csv('GC3.csv')
+# GC4.to_csv('GC4.csv')
 
 #ES2 to pickle
 # ES1df = pd.read_csv('ES1.csv')
 # ES2df = pd.read_csv('ES2.csv')
 # ES3df = pd.read_csv('ES3.csv')
 # ES4df = pd.read_csv('ES4.csv')
-#
+# NQ1df = pd.read_csv('NQ1.csv')
+# NQ2df = pd.read_csv('NQ2.csv')
+# CL1df = pd.read_csv('CL1.csv')
+# CL2df = pd.read_csv('CL2.csv')
+# CL3df = pd.read_csv('CL3.csv')
+# CL4df = pd.read_csv('CL4.csv')
+# NG1df = pd.read_csv('NG1.csv')
+# NG2df = pd.read_csv('NG2.csv')
+# NG3df = pd.read_csv('NG3.csv')
+# NG4df = pd.read_csv('NG4.csv')
+# GC1df = pd.read_csv('GC1.csv')
+# GC2df = pd.read_csv('GC2.csv')
+# GC3df = pd.read_csv('GC3.csv')
+# GC4df = pd.read_csv('GC4.csv')
+
 # with open('ES1.pkl', 'wb') as pickle_file:
 #     pickle.dump(ES1df, pickle_file)
 #
@@ -110,9 +138,95 @@ print(mydb)
 
 # print(ES4_pickle.head())
 
+# with open('NQ1.pkl', 'wb') as pickle_file:
+#     pickle.dump(NQ1df, pickle_file)
+#
+# with open('NQ1.pkl', 'rb') as pickle_file:
+#     NQ1_pickle = pickle.load(pickle_file)
+#
+# with open('NQ2.pkl', 'wb') as pickle_file:
+#     pickle.dump(NQ2df, pickle_file)
+#
+# with open('NQ2.pkl', 'rb') as pickle_file:
+#     NQ2_pickle = pickle.load(pickle_file)
+#
+# with open('CL1.pkl', 'wb') as pickle_file:
+#     pickle.dump(CL1df, pickle_file)
+#
+# with open('CL1.pkl', 'rb') as pickle_file:
+#     CL1_pickle = pickle.load(pickle_file)
+#
+# with open('CL2.pkl', 'wb') as pickle_file:
+#     pickle.dump(CL2df, pickle_file)
+#
+# with open('CL2.pkl', 'rb') as pickle_file:
+#     CL2_pickle = pickle.load(pickle_file)
+#
+# with open('CL3.pkl', 'wb') as pickle_file:
+#     pickle.dump(CL3df, pickle_file)
+#
+# with open('CL3.pkl', 'rb') as pickle_file:
+#     CL3_pickle = pickle.load(pickle_file)
+#
+# with open('CL4.pkl', 'wb') as pickle_file:
+#     pickle.dump(CL4df, pickle_file)
+#
+# with open('CL4.pkl', 'rb') as pickle_file:
+#     CL4_pickle = pickle.load(pickle_file)
+
+# with open('NG1.pkl', 'wb') as pickle_file:
+#     pickle.dump(NG1df, pickle_file)
+#
+# with open('NG1.pkl', 'rb') as pickle_file:
+#     NG1_pickle = pickle.load(pickle_file)
+#
+# with open('NG2.pkl', 'wb') as pickle_file:
+#     pickle.dump(NG2df, pickle_file)
+#
+# with open('NG2.pkl', 'rb') as pickle_file:
+#     NG2_pickle = pickle.load(pickle_file)
+#
+# with open('NG3.pkl', 'wb') as pickle_file:
+#     pickle.dump(NG3df, pickle_file)
+#
+# with open('NG3.pkl', 'rb') as pickle_file:
+#     NG3_pickle = pickle.load(pickle_file)
+#
+# with open('NG4.pkl', 'wb') as pickle_file:
+#     pickle.dump(NG4df, pickle_file)
+#
+# with open('NG4.pkl', 'rb') as pickle_file:
+#     NG4_pickle = pickle.load(pickle_file)
+#
+# with open('GC1.pkl', 'wb') as pickle_file:
+#     pickle.dump(GC1df, pickle_file)
+#
+# with open('GC1.pkl', 'rb') as pickle_file:
+#     GC1_pickle = pickle.load(pickle_file)
+#
+# with open('GC2.pkl', 'wb') as pickle_file:
+#     pickle.dump(GC2df, pickle_file)
+#
+# with open('GC2.pkl', 'rb') as pickle_file:
+#     GC2_pickle = pickle.load(pickle_file)
+#
+# with open('GC3.pkl', 'wb') as pickle_file:
+#     pickle.dump(GC3df, pickle_file)
+#
+# with open('GC3.pkl', 'rb') as pickle_file:
+#     GC3_pickle = pickle.load(pickle_file)
+#
+# with open('GC4.pkl', 'wb') as pickle_file:
+#     pickle.dump(GC4df, pickle_file)
+#
+# with open('GC4.pkl', 'rb') as pickle_file:
+#     GC4_pickle = pickle.load(pickle_file)
+
+# print(NG4_pickle.head())
+
 # OPEN PICKLE FILE
 with open('ES1.pkl', 'rb') as pickle_file:
-    ES1_table = pickle.load(pickle_file)
+     ES1_table = pickle.load(pickle_file)
 
 with open('ES2.pkl', 'rb') as pickle_file:
     ES2_table = pickle.load(pickle_file)
@@ -123,7 +237,8 @@ with open('ES3.pkl', 'rb') as pickle_file:
 with open('ES4.pkl', 'rb') as pickle_file:
     ES4_table = pickle.load(pickle_file)
 
-print(ES4_table.head())
+
+print(ES1_table.head())
 
 # TESTING FUNCTION - DOUBLING COLUMN
 # ES4_table['Open_double'] = ES4_table['Open']*2
