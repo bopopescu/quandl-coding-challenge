@@ -79,34 +79,34 @@ print(mydb)
 # ES4.to_csv('ES4.csv')
 
 #ES2 to pickle
-ES1df = pd.read_csv('ES1.csv')
-ES2df = pd.read_csv('ES2.csv')
-ES3df = pd.read_csv('ES3.csv')
-ES4df = pd.read_csv('ES4.csv')
-
-with open('ES1.pkl', 'wb') as pickle_file:
-    pickle.dump(ES1df, pickle_file)
-
-with open('ES1.pkl', 'rb') as pickle_file:
-    ES1_pickle = pickle.load(pickle_file)
-
-with open('ES2.pkl', 'wb') as pickle_file:
-    pickle.dump(ES2df, pickle_file)
-
-with open('ES2.pkl', 'rb') as pickle_file:
-    ES2_pickle = pickle.load(pickle_file)
-
-with open('ES3.pkl', 'wb') as pickle_file:
-    pickle.dump(ES3df, pickle_file)
-
-with open('ES3.pkl', 'rb') as pickle_file:
-    ES3_pickle = pickle.load(pickle_file)
-
-with open('ES4.pkl', 'wb') as pickle_file:
-    pickle.dump(ES4df, pickle_file)
-
-with open('ES4.pkl', 'rb') as pickle_file:
-    ES4_pickle = pickle.load(pickle_file)
+# ES1df = pd.read_csv('ES1.csv')
+# ES2df = pd.read_csv('ES2.csv')
+# ES3df = pd.read_csv('ES3.csv')
+# ES4df = pd.read_csv('ES4.csv')
+#
+# with open('ES1.pkl', 'wb') as pickle_file:
+#     pickle.dump(ES1df, pickle_file)
+#
+# with open('ES1.pkl', 'rb') as pickle_file:
+#     ES1_pickle = pickle.load(pickle_file)
+#
+# with open('ES2.pkl', 'wb') as pickle_file:
+#     pickle.dump(ES2df, pickle_file)
+#
+# with open('ES2.pkl', 'rb') as pickle_file:
+#     ES2_pickle = pickle.load(pickle_file)
+#
+# with open('ES3.pkl', 'wb') as pickle_file:
+#     pickle.dump(ES3df, pickle_file)
+#
+# with open('ES3.pkl', 'rb') as pickle_file:
+#     ES3_pickle = pickle.load(pickle_file)
+#
+# with open('ES4.pkl', 'wb') as pickle_file:
+#     pickle.dump(ES4df, pickle_file)
+#
+# with open('ES4.pkl', 'rb') as pickle_file:
+#     ES4_pickle = pickle.load(pickle_file)
 
 # print(ES4_pickle.head())
 
