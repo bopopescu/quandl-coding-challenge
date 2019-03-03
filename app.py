@@ -277,6 +277,8 @@ with open('NQ1.pkl', 'rb') as pickle_file:
 with open('NQ2.pkl', 'rb') as pickle_file:
     NQ2_table = pickle.load(pickle_file)
 
+# print(ES1_table)
+
 # TESTING FUNCTION - DOUBLING COLUMN
 # ES4_table['Open_double'] = ES4_table['Open']*2
 #
@@ -320,6 +322,7 @@ with open('NQ2.pkl', 'rb') as pickle_file:
 # print(ES2_table[['Open','Open_double']])
 
 
+
 ES1_table['ret'] = ES1_table['Settle'] / ES1_table['Settle'].shift(1) - 1
 ES2_table['ret'] = ES2_table['Settle'] / ES2_table['Settle'].shift(1) - 1
 ES3_table['ret'] = ES3_table['Settle'] / ES3_table['Settle'].shift(1) - 1
@@ -339,6 +342,8 @@ NG3_table['ret'] = NG3_table['Settle'] / NG3_table['Settle'].shift(1) - 1
 NG4_table['ret'] = NG4_table['Settle'] / NG4_table['Settle'].shift(1) - 1
 NQ1_table['ret'] = NQ1_table['Settle'] / NQ1_table['Settle'].shift(1) - 1
 NQ2_table['ret'] = NQ2_table['Settle'] / NQ2_table['Settle'].shift(1) - 1
+
+# print(ES1_table)
 
 # contract_root = input("Enter your contract root: ")
 # contract_root = "ES"
@@ -360,6 +365,9 @@ NG3_table['volatility'] = NG3_table['ret'].std()
 NG4_table['volatility'] = NG4_table['ret'].std()
 NQ1_table['volatility'] = NQ1_table['ret'].std()
 NQ2_table['volatility'] = NQ2_table['ret'].std()
+
+# print(ES1_table)
+
 # input_name = raw_input("Enter a table name:")
 # globals()[input_name] =
 
@@ -460,10 +468,13 @@ def CME_NG_annual_vol():
 def CME_NQ_annual_vol():
     print(NQ_annual_vol.sort_values('annualized_vol', ascending=False))
 
-# function_dict = {'CME_ES': CME_ES_annual_vol, 'CME_CL': CME_CL_annual_vol, 'CME_GC': CME_GC_annual_vol,
-#                  'CME_NG': CME_NG_annual_vol, 'CME_NQ': CME_NQ_annual_vol}
-# func = input('Which contract would you like to see the annualized volatility? \nCONTRACT ROOT:')
-# function_dict[func]()
+
+# print(ES1_table)
+
+function_dict = {'CME_ES': CME_ES_annual_vol, 'CME_CL': CME_CL_annual_vol, 'CME_GC': CME_GC_annual_vol,
+                 'CME_NG': CME_NG_annual_vol, 'CME_NQ': CME_NQ_annual_vol}
+func = input('Please type a contract root to see its annualized volatility? \nCONTRACT ROOT:')
+function_dict[func]()
 
 # print(ES_annual_vol)
 
@@ -506,26 +517,29 @@ NQ2_table['tr_1_yr_vol'] = NQ2_table[['ret']].rolling(252).std()
 
 
 # print(ES1_table)
-ES1_table.dropna(inplace=True)
-ES2_table.dropna(inplace=True)
-ES3_table.dropna(inplace=True)
-ES4_table.dropna(inplace=True)
-CL1_table.dropna(inplace=True)
-CL2_table.dropna(inplace=True)
-CL3_table.dropna(inplace=True)
-CL4_table.dropna(inplace=True)
-GC1_table.dropna(inplace=True)
-GC2_table.dropna(inplace=True)
-GC3_table.dropna(inplace=True)
-GC4_table.dropna(inplace=True)
-NG1_table.dropna(inplace=True)
-NG2_table.dropna(inplace=True)
-NG3_table.dropna(inplace=True)
-NG4_table.dropna(inplace=True)
-NQ1_table.dropna(inplace=True)
-NQ2_table.dropna(inplace=True)
+
+# ES1_dropped = ES1_table.dropna
+# ES2_table.dropna(inplace=True)
+# ES3_table.dropna(inplace=True)
+# ES4_table.dropna(inplace=True)
+# CL1_table.dropna(inplace=True)
+# CL2_table.dropna(inplace=True)
+# CL3_table.dropna(inplace=True)
+# CL4_table.dropna(inplace=True)
+# GC1_table.dropna(inplace=True)
+# GC2_table.dropna(inplace=True)
+# GC3_table.dropna(inplace=True)
+# GC4_table.dropna(inplace=True)
+# NG1_table.dropna(inplace=True)
+# NG2_table.dropna(inplace=True)
+# NG3_table.dropna(inplace=True)
+# NG4_table.dropna(inplace=True)
+# NQ1_table.dropna(inplace=True)
+# NQ2_table.dropna(inplace=True)
 # ES2_table['tr_1_yr_vol'].mean
 # print(ES2_table['tr_1_yr_vol'].mean())
+
+# print(ES1_dropped)
 
 ES_tr_1_yr_vol = pd.DataFrame(
     [['CME_ES1', ES1_table['tr_1_yr_vol'].mean()],
@@ -571,8 +585,31 @@ NQ_tr_1_yr_vol = pd.DataFrame(
 )
 
 
+def CME_ES_tr_1_yr_vol():
+    print(ES_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
 
-print(NQ_tr_1_yr_vol)
+def CME_CL_tr_1_yr_vol():
+    print(CL_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
+
+def CME_GC_tr_1_yr_vol():
+    print(GC_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
+
+def CME_NG_tr_1_yr_vol():
+    print(NG_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
+
+def CME_NQ_tr_1_yr_vol():
+    print(NQ_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
+
+
+trailing_dict = {'CME_ES': CME_ES_tr_1_yr_vol, 'CME_CL': CME_CL_tr_1_yr_vol, 'CME_GC': CME_GC_tr_1_yr_vol,
+                 'CME_NG': CME_NG_tr_1_yr_vol, 'CME_NQ': CME_NQ_tr_1_yr_vol}
+trail = input('Please type a contract root to see its trailing one year volatility \nCONTRACT ROOT:')
+trailing_dict[trail]()
+
+print(ES1_table)
+
+
+
 
 # ES_tr_1_yr_vol = pd.DataFrame(
 #     [['CME_ES1', ES1_table['tr_1_yr_vol'].mean]]
