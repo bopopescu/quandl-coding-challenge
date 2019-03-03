@@ -628,6 +628,3 @@ print(ES1_table)
 
 # ESdf.to_pickle('ES.pkl')
 # ESdf2 = pd.read_pickle('ES.pkl')
-# print(ESdf2.head())
-
-# ES1.to_sql(mydb, "app.py", if_exists='replace', flavor='mysql')
