@@ -342,7 +342,6 @@ NG3_table['ret'] = NG3_table['Settle'] / NG3_table['Settle'].shift(1) - 1
 NG4_table['ret'] = NG4_table['Settle'] / NG4_table['Settle'].shift(1) - 1
 NQ1_table['ret'] = NQ1_table['Settle'] / NQ1_table['Settle'].shift(1) - 1
 NQ2_table['ret'] = NQ2_table['Settle'] / NQ2_table['Settle'].shift(1) - 1
-
 # print(ES1_table)
 
 # contract_root = input("Enter your contract root: ")
@@ -471,10 +470,10 @@ def CME_NQ_annual_vol():
 
 # print(ES1_table)
 
-function_dict = {'CME_ES': CME_ES_annual_vol, 'CME_CL': CME_CL_annual_vol, 'CME_GC': CME_GC_annual_vol,
-                 'CME_NG': CME_NG_annual_vol, 'CME_NQ': CME_NQ_annual_vol}
-func = input('Please type a contract root to see its annualized volatility? \nCONTRACT ROOT:')
-function_dict[func]()
+# function_dict = {'CME_ES': CME_ES_annual_vol, 'CME_CL': CME_CL_annual_vol, 'CME_GC': CME_GC_annual_vol,
+#                  'CME_NG': CME_NG_annual_vol, 'CME_NQ': CME_NQ_annual_vol}
+# func = input('Please type a contract root to see its annualized volatility? \nCONTRACT ROOT:\n')
+# function_dict[func]()
 
 # print(ES_annual_vol)
 
@@ -584,7 +583,6 @@ NQ_tr_1_yr_vol = pd.DataFrame(
     columns=['code_name', 'tr_1_yr_vol']
 )
 
-
 def CME_ES_tr_1_yr_vol():
     print(ES_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
 
@@ -601,14 +599,230 @@ def CME_NQ_tr_1_yr_vol():
     print(NQ_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
 
 
-trailing_dict = {'CME_ES': CME_ES_tr_1_yr_vol, 'CME_CL': CME_CL_tr_1_yr_vol, 'CME_GC': CME_GC_tr_1_yr_vol,
-                 'CME_NG': CME_NG_tr_1_yr_vol, 'CME_NQ': CME_NQ_tr_1_yr_vol}
-trail = input('Please type a contract root to see its trailing one year volatility \nCONTRACT ROOT:')
-trailing_dict[trail]()
+# trailing_dict = {'CME_ES': CME_ES_tr_1_yr_vol, 'CME_CL': CME_CL_tr_1_yr_vol, 'CME_GC': CME_GC_tr_1_yr_vol,
+#                  'CME_NG': CME_NG_tr_1_yr_vol, 'CME_NQ': CME_NQ_tr_1_yr_vol}
+# trail = input('Please type a contract root to see its trailing one year volatility \nCONTRACT ROOT:\n')
+# trailing_dict[trail]()
 
-print(ES1_table)
+ES1_max = ES1_table[ES1_table['ret']==ES1_table['ret'].max()]
+ES2_max = ES2_table[ES2_table['ret']==ES2_table['ret'].max()]
+ES3_max = ES3_table[ES3_table['ret']==ES3_table['ret'].max()]
+ES4_max = ES4_table[ES4_table['ret']==ES4_table['ret'].max()]
+CL1_max = CL1_table[CL1_table['ret']==CL1_table['ret'].max()]
+CL2_max = CL2_table[CL2_table['ret']==CL2_table['ret'].max()]
+CL3_max = CL3_table[CL3_table['ret']==CL3_table['ret'].max()]
+CL4_max = CL4_table[CL4_table['ret']==CL4_table['ret'].max()]
+GC1_max = GC1_table[GC1_table['ret']==GC1_table['ret'].max()]
+GC2_max = GC2_table[GC2_table['ret']==GC2_table['ret'].max()]
+GC3_max = GC3_table[GC3_table['ret']==GC3_table['ret'].max()]
+GC4_max = GC4_table[GC4_table['ret']==GC4_table['ret'].max()]
+NG1_max = NG1_table[NG1_table['ret']==NG1_table['ret'].max()]
+NG2_max = NG2_table[NG2_table['ret']==NG2_table['ret'].max()]
+NG3_max = NG3_table[NG3_table['ret']==NG3_table['ret'].max()]
+NG4_max = NG4_table[NG4_table['ret']==NG4_table['ret'].max()]
+NQ1_max = NQ1_table[NQ1_table['ret']==NQ1_table['ret'].max()]
+NQ2_max = NQ2_table[NQ2_table['ret']==NQ2_table['ret'].max()]
+
+# ES_tr_1_yr_vol = pd.DataFrame(
+#     [['CME_ES1', ES1_table['tr_1_yr_vol'].mean()],
+#      ['CME_ES2', ES2_table['tr_1_yr_vol'].mean()],
+#      ['CME_ES3', ES3_table['tr_1_yr_vol'].mean()],
+#      ['CME_ES4', ES4_table['tr_1_yr_vol'].mean()]],
+#     index=None,
+#     columns=['code_name', 'tr_1_yr_vol']
+# )
+#
+ES_max_ret = pd.DataFrame(
+    [[ES1_max['Date'].max(), 'CME_ES1', ES1_max['ret'].max()],
+     [ES2_max['Date'].max(), 'CME_ES2', ES2_max['ret'].max()],
+     [ES3_max['Date'].max(), 'CME_ES3', ES3_max['ret'].max()],
+     [ES4_max['Date'].max(), 'CME_ES4', ES4_max['ret'].max()]],
+    index=None,
+    columns=['date', 'code_name', 'ret']
+)
+CL_max_ret = pd.DataFrame(
+    [[CL1_max['Date'].max(), 'CME_CL1', CL1_max['ret'].max()],
+     [CL2_max['Date'].max(), 'CME_CL2', CL2_max['ret'].max()],
+     [CL3_max['Date'].max(), 'CME_CL3', CL3_max['ret'].max()],
+     [CL4_max['Date'].max(), 'CME_CL4', CL4_max['ret'].max()]],
+    index=None,
+    columns=['date', 'code_name', 'ret']
+)
+GC_max_ret = pd.DataFrame(
+    [[GC1_max['Date'].max(), 'CME_GC1', GC1_max['ret'].max()],
+     [GC2_max['Date'].max(), 'CME_GC2', GC2_max['ret'].max()],
+     [GC3_max['Date'].max(), 'CME_GC3', GC3_max['ret'].max()],
+     [GC4_max['Date'].max(), 'CME_GC4', GC4_max['ret'].max()]],
+    index=None,
+    columns=['date', 'code_name', 'ret']
+)
+NG_max_ret = pd.DataFrame(
+    [[NG1_max['Date'].max(), 'CME_NG1', NG1_max['ret'].max()],
+     [NG2_max['Date'].max(), 'CME_NG2', NG2_max['ret'].max()],
+     [NG3_max['Date'].max(), 'CME_NG3', NG3_max['ret'].max()],
+     [NG4_max['Date'].max(), 'CME_NG4', NG4_max['ret'].max()]],
+    index=None,
+    columns=['date', 'code_name', 'ret']
+)
+NQ_max_ret = pd.DataFrame(
+    [[NQ1_max['Date'].max(), 'CME_NQ1', NQ1_max['ret'].max()],
+     [NQ2_max['Date'].max(), 'CME_NQ2', NQ2_max['ret'].max()]],
+    index=None,
+    columns=['date', 'code_name', 'ret']
+)
+
+def CME_ES_max_ret():
+    print(ES_max_ret.sort_values('ret', ascending=False))
+
+def CME_CL_max_ret():
+    print(CL_max_ret.sort_values('ret', ascending=False))
+
+def CME_GC_max_ret():
+    print(GC_max_ret.sort_values('ret', ascending=False))
+
+def CME_NG_max_ret():
+    print(NG_max_ret.sort_values('ret', ascending=False))
+
+def CME_NQ_max_ret():
+    print(NQ_max_ret.sort_values('ret', ascending=False))
 
 
+# ES1_table.to_html('ES1.html')
+
+# single_day_dict = {'CME_ES': CME_ES_max_ret, 'CME_CL': CME_CL_max_ret, 'CME_GC': CME_GC_max_ret,
+#                  'CME_NG': CME_NG_max_ret, 'CME_NQ': CME_NQ_max_ret}
+# single = input('Please type a contract root to see its largest single day return \nCONTRACT ROOT:\n')
+# single_day_dict[single]()
+#
+
+#Annual Return = (Settle[last] - Settle[first])/(number of indexes)  * 252
+
+ES1_overall_gain = (ES1_table['Settle'].iat[-1])-(ES1_table['Settle'][0])
+ES1_ann_gain = (ES1_overall_gain)/(len(ES1_table.index)) * 252
+ES2_overall_gain = (ES2_table['Settle'].iat[-1])-(ES2_table['Settle'][0])
+ES2_ann_gain = (ES2_overall_gain)/(len(ES2_table.index)) * 252
+ES3_overall_gain = (ES3_table['Settle'].iat[-1])-(ES3_table['Settle'][0])
+ES3_ann_gain = (ES3_overall_gain)/(len(ES3_table.index)) * 252
+ES4_overall_gain = (ES4_table['Settle'].iat[-1])-(ES4_table['Settle'][0])
+ES4_ann_gain = (ES4_overall_gain)/(len(ES4_table.index)) * 252
+
+CL1_overall_gain = (CL1_table['Settle'].iat[-1])-(CL1_table['Settle'][0])
+CL1_ann_gain = (CL1_overall_gain)/(len(CL1_table.index)) * 252
+CL2_overall_gain = (CL2_table['Settle'].iat[-1])-(CL2_table['Settle'][0])
+CL2_ann_gain = (CL2_overall_gain)/(len(CL2_table.index)) * 252
+CL3_overall_gain = (CL3_table['Settle'].iat[-1])-(CL3_table['Settle'][0])
+CL3_ann_gain = (CL3_overall_gain)/(len(CL3_table.index)) * 252
+CL4_overall_gain = (CL4_table['Settle'].iat[-1])-(CL4_table['Settle'][0])
+CL4_ann_gain = (CL4_overall_gain)/(len(CL4_table.index)) * 252
+
+GC1_overall_gain = (GC1_table['Settle'].iat[-1])-(GC1_table['Settle'][0])
+GC1_ann_gain = (GC1_overall_gain)/(len(GC1_table.index)) * 252
+GC2_overall_gain = (GC2_table['Settle'].iat[-1])-(GC2_table['Settle'][0])
+GC2_ann_gain = (GC2_overall_gain)/(len(GC2_table.index)) * 252
+GC3_overall_gain = (GC3_table['Settle'].iat[-1])-(GC3_table['Settle'][0])
+GC3_ann_gain = (GC3_overall_gain)/(len(GC3_table.index)) * 252
+GC4_overall_gain = (GC4_table['Settle'].iat[-1])-(GC4_table['Settle'][0])
+GC4_ann_gain = (GC4_overall_gain)/(len(GC4_table.index)) * 252
+
+NG1_overall_gain = (NG1_table['Settle'].iat[-1])-(NG1_table['Settle'][0])
+NG1_ann_gain = (NG1_overall_gain)/(len(NG1_table.index)) * 252
+NG2_overall_gain = (NG2_table['Settle'].iat[-1])-(NG2_table['Settle'][0])
+NG2_ann_gain = (NG2_overall_gain)/(len(NG2_table.index)) * 252
+NG3_overall_gain = (NG3_table['Settle'].iat[-1])-(NG3_table['Settle'][0])
+NG3_ann_gain = (NG3_overall_gain)/(len(NG3_table.index)) * 252
+NG4_overall_gain = (NG4_table['Settle'].iat[-1])-(NG4_table['Settle'][0])
+NG4_ann_gain = (NG4_overall_gain)/(len(NG4_table.index)) * 252
+
+NQ1_overall_gain = (NQ1_table['Settle'].iat[-1])-(NQ1_table['Settle'][0])
+NQ1_ann_gain = (NQ1_overall_gain)/(len(NQ1_table.index)) * 252
+NQ2_overall_gain = (NQ2_table['Settle'].iat[-1])-(NQ2_table['Settle'][0])
+NQ2_ann_gain = (NQ2_overall_gain)/(len(NQ2_table.index)) * 252
+
+
+
+print(NQ1_table['Settle'].head())
+print(NQ1_table['Settle'].tail())
+# print(len(ES1_table.index))
+# print(ES1_overall_gain)
+print(NQ2_ann_gain)
+
+ES_ann_gain = pd.DataFrame(
+    [['CME_ES1', ES1_ann_gain],
+     ['CME_ES2', ES2_ann_gain],
+     ['CME_ES3', ES3_ann_gain],
+     ['CME_ES4', ES4_ann_gain]],
+    index=None,
+    columns=['code_name', 'annual_return']
+)
+
+CL_ann_gain = pd.DataFrame(
+    [['CME_CL1', CL1_ann_gain],
+     ['CME_CL2', CL2_ann_gain],
+     ['CME_CL3', CL3_ann_gain],
+     ['CME_CL4', CL4_ann_gain]],
+    index=None,
+    columns=['code_name', 'annual_return']
+)
+
+GC_ann_gain = pd.DataFrame(
+    [['CME_GC1', GC1_ann_gain],
+     ['CME_GC2', GC2_ann_gain],
+     ['CME_GC3', GC3_ann_gain],
+     ['CME_GC4', GC4_ann_gain]],
+    index=None,
+    columns=['code_name', 'annual_return']
+)
+
+NG_ann_gain = pd.DataFrame(
+    [['CME_NG1', NG1_ann_gain],
+     ['CME_NG2', NG2_ann_gain],
+     ['CME_NG3', NG3_ann_gain],
+     ['CME_NG4', NG4_ann_gain]],
+    index=None,
+    columns=['code_name', 'annual_return']
+)
+
+NQ_ann_gain = pd.DataFrame(
+    [['CME_NQ1', NQ1_ann_gain],
+     ['CME_NQ2', NQ2_ann_gain]],
+    index=None,
+    columns=['code_name', 'annual_return']
+)
+
+def CME_ES_ann_gain():
+    print(ES_ann_gain.sort_values('annual_return', ascending=False))
+
+def CME_CL_ann_gain():
+    print(CL_ann_gain.sort_values('annual_return', ascending=False))
+
+def CME_GC_ann_gain():
+    print(GC_ann_gain.sort_values('annual_return', ascending=False))
+
+def CME_NG_ann_gain():
+    print(NG_ann_gain.sort_values('annual_return', ascending=False))
+
+def CME_NQ_ann_gain():
+    print(NQ_ann_gain.sort_values('annual_return', ascending=False))
+
+
+ann_dict = {'CME_ES': CME_ES_ann_gain, 'CME_CL': CME_CL_ann_gain, 'CME_GC': CME_GC_ann_gain,
+                 'CME_NG': CME_NG_ann_gain, 'CME_NQ': CME_NQ_ann_gain}
+ann = input('Please type a contract root to see its annual return \nCONTRACT ROOT:\n')
+ann_dict[ann]()
+
+
+# print(ES_tr_1_yr_vol)
+
+
+# print(ES1_max)
+# print(ES1_max[['Date', 'ret']])
+# print(NQ_max_ret)
+
+
+# print(NQ1_max[['Date','ret']])
+# print(NQ2_max[['Date','ret']])
+# print(NG3_max[['Date','ret']])
+# print(NG4_max[['Date','ret']])
 
 
 # ES_tr_1_yr_vol = pd.DataFrame(
