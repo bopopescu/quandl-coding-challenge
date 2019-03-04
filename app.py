@@ -313,21 +313,10 @@ with open('NQ2.pkl', 'rb') as pickle_file:
 # with open('ES2.pkl', 'rb') as pickle_file:
 #     ES2_table = pickle.load(pickle_file)
 
-# print(ES2_table.head())
-
-
-# TESTING FUNCTION - DOUBLING COLUMN
-# ES2_table['Open_double'] = ES2_table['Open']*2
-#
-# print(ES2_table[['Open','Open_double']])
-
-
-
 ES1_table['ret'] = ES1_table['Settle'] / ES1_table['Settle'].shift(1) - 1
 ES2_table['ret'] = ES2_table['Settle'] / ES2_table['Settle'].shift(1) - 1
 ES3_table['ret'] = ES3_table['Settle'] / ES3_table['Settle'].shift(1) - 1
 ES4_table['ret'] = ES4_table['Settle'] / ES4_table['Settle'].shift(1) - 1
-# print(ES1_table['Settle'].max())
 CL1_table['ret'] = CL1_table['Settle'] / CL1_table['Settle'].shift(1) - 1
 CL2_table['ret'] = CL2_table['Settle'] / CL2_table['Settle'].shift(1) - 1
 CL3_table['ret'] = CL3_table['Settle'] / CL3_table['Settle'].shift(1) - 1
@@ -342,10 +331,9 @@ NG3_table['ret'] = NG3_table['Settle'] / NG3_table['Settle'].shift(1) - 1
 NG4_table['ret'] = NG4_table['Settle'] / NG4_table['Settle'].shift(1) - 1
 NQ1_table['ret'] = NQ1_table['Settle'] / NQ1_table['Settle'].shift(1) - 1
 NQ2_table['ret'] = NQ2_table['Settle'] / NQ2_table['Settle'].shift(1) - 1
-# print(ES1_table)
 
-# contract_root = input("Enter your contract root: ")
-# contract_root = "ES"
+#Calculating Volatility
+
 ES1_table['volatility'] = ES1_table['ret'].std()
 ES2_table['volatility'] = ES2_table['ret'].std()
 ES3_table['volatility'] = ES3_table['ret'].std()
@@ -365,29 +353,7 @@ NG4_table['volatility'] = NG4_table['ret'].std()
 NQ1_table['volatility'] = NQ1_table['ret'].std()
 NQ2_table['volatility'] = NQ2_table['ret'].std()
 
-# print(ES1_table)
-
-# input_name = raw_input("Enter a table name:")
-# globals()[input_name] =
-
-# contract_root = input("What Table: ")
-# def get_annual_vol(contract_root):
-#     print(contract_root.head())
-#
-#
-# get_annual_vol(ES1_table)
-
-# print(contract_root)
-# print(ES3_table[['volatility']])
-
-# print(ES1_table)
-
-# Graph Settle points
-# ES4_table['Settle'].plot()
-# plt.show()
-#
-# root_dictionary= {'ES':ES, 'CL':CL, 'GC':GC, 'NG':NG, 'NQ':NQ}
-# root = input('Root: ')
+#1) Get Annualized Volatility of Returns
 
 ES1_table['ann_vol'] = ES1_table[['volatility']] * math.sqrt(252)
 ES2_table['ann_vol'] = ES2_table[['volatility']] * math.sqrt(252)
@@ -451,7 +417,6 @@ NQ_annual_vol = pd.DataFrame(
     columns=['code_name', 'annualized_vol']
 )
 
-
 def CME_ES_annual_vol():
     print(ES_annual_vol.sort_values('annualized_vol', ascending=False))
 
@@ -468,32 +433,14 @@ def CME_NQ_annual_vol():
     print(NQ_annual_vol.sort_values('annualized_vol', ascending=False))
 
 
-# print(ES1_table)
+print('\n\n1) Get Annualized Volatility of Returns')
+function_dict = {'CME_ES': CME_ES_annual_vol, 'CME_CL': CME_CL_annual_vol, 'CME_GC': CME_GC_annual_vol,
+                 'CME_NG': CME_NG_annual_vol, 'CME_NQ': CME_NQ_annual_vol}
+func = input('Please type a contract root to see its annualized volatility (Ex. CME_ES)\nCONTRACT ROOT:\n')
+function_dict[func]()
 
-# function_dict = {'CME_ES': CME_ES_annual_vol, 'CME_CL': CME_CL_annual_vol, 'CME_GC': CME_GC_annual_vol,
-#                  'CME_NG': CME_NG_annual_vol, 'CME_NQ': CME_NQ_annual_vol}
-# func = input('Please type a contract root to see its annualized volatility? \nCONTRACT ROOT:\n')
-# function_dict[func]()
+#2. Get Trailing 1 year volatility
 
-# print(ES_annual_vol)
-
-# variable = input("Input: ")
-#
-# print(variable)
-#
-# variable(1) =
-# print(ES_annual_vol)
-
-# (ES1_table['ann_vol'].max(), ES2_table['ann_vol'].max(), ES3_table['ann_vol'].max(), ES4_table['ann_vol'].max())
-
-
-# print(ES1_table.max)
-# print(ES2_table)
-
-# ann_vol_table =
-
-# print(ES1_table[['ann_vol']], ES2_table[['ann_vol']], ES3_table[['ann_vol']], ES4_table[['ann_vol']])
-#
 ES1_table['tr_1_yr_vol'] = ES1_table[['ret']].rolling(252).std()
 ES2_table['tr_1_yr_vol'] = ES2_table[['ret']].rolling(252).std()
 ES3_table['tr_1_yr_vol'] = ES3_table[['ret']].rolling(252).std()
@@ -513,32 +460,6 @@ NG4_table['tr_1_yr_vol'] = NG4_table[['ret']].rolling(252).std()
 NQ1_table['tr_1_yr_vol'] = NQ1_table[['ret']].rolling(252).std()
 NQ2_table['tr_1_yr_vol'] = NQ2_table[['ret']].rolling(252).std()
 
-
-
-# print(ES1_table)
-
-# ES1_dropped = ES1_table.dropna
-# ES2_table.dropna(inplace=True)
-# ES3_table.dropna(inplace=True)
-# ES4_table.dropna(inplace=True)
-# CL1_table.dropna(inplace=True)
-# CL2_table.dropna(inplace=True)
-# CL3_table.dropna(inplace=True)
-# CL4_table.dropna(inplace=True)
-# GC1_table.dropna(inplace=True)
-# GC2_table.dropna(inplace=True)
-# GC3_table.dropna(inplace=True)
-# GC4_table.dropna(inplace=True)
-# NG1_table.dropna(inplace=True)
-# NG2_table.dropna(inplace=True)
-# NG3_table.dropna(inplace=True)
-# NG4_table.dropna(inplace=True)
-# NQ1_table.dropna(inplace=True)
-# NQ2_table.dropna(inplace=True)
-# ES2_table['tr_1_yr_vol'].mean
-# print(ES2_table['tr_1_yr_vol'].mean())
-
-# print(ES1_dropped)
 
 ES_tr_1_yr_vol = pd.DataFrame(
     [['CME_ES1', ES1_table['tr_1_yr_vol'].mean()],
@@ -598,11 +519,13 @@ def CME_NG_tr_1_yr_vol():
 def CME_NQ_tr_1_yr_vol():
     print(NQ_tr_1_yr_vol.sort_values('tr_1_yr_vol', ascending=False))
 
+print('\n\n2) Get Trailing One Year Volatility')
+trailing_dict = {'CME_ES': CME_ES_tr_1_yr_vol, 'CME_CL': CME_CL_tr_1_yr_vol, 'CME_GC': CME_GC_tr_1_yr_vol,
+                 'CME_NG': CME_NG_tr_1_yr_vol, 'CME_NQ': CME_NQ_tr_1_yr_vol}
+trail = input('Please type a contract root to see its trailing one year volatility (Ex. CME_ES)\nCONTRACT ROOT:\n')
+trailing_dict[trail]()
 
-# trailing_dict = {'CME_ES': CME_ES_tr_1_yr_vol, 'CME_CL': CME_CL_tr_1_yr_vol, 'CME_GC': CME_GC_tr_1_yr_vol,
-#                  'CME_NG': CME_NG_tr_1_yr_vol, 'CME_NQ': CME_NQ_tr_1_yr_vol}
-# trail = input('Please type a contract root to see its trailing one year volatility \nCONTRACT ROOT:\n')
-# trailing_dict[trail]()
+#3. Get Largest Single Day Return
 
 ES1_max = ES1_table[ES1_table['ret']==ES1_table['ret'].max()]
 ES2_max = ES2_table[ES2_table['ret']==ES2_table['ret'].max()]
@@ -623,15 +546,6 @@ NG4_max = NG4_table[NG4_table['ret']==NG4_table['ret'].max()]
 NQ1_max = NQ1_table[NQ1_table['ret']==NQ1_table['ret'].max()]
 NQ2_max = NQ2_table[NQ2_table['ret']==NQ2_table['ret'].max()]
 
-# ES_tr_1_yr_vol = pd.DataFrame(
-#     [['CME_ES1', ES1_table['tr_1_yr_vol'].mean()],
-#      ['CME_ES2', ES2_table['tr_1_yr_vol'].mean()],
-#      ['CME_ES3', ES3_table['tr_1_yr_vol'].mean()],
-#      ['CME_ES4', ES4_table['tr_1_yr_vol'].mean()]],
-#     index=None,
-#     columns=['code_name', 'tr_1_yr_vol']
-# )
-#
 ES_max_ret = pd.DataFrame(
     [[ES1_max['Date'].max(), 'CME_ES1', ES1_max['ret'].max()],
      [ES2_max['Date'].max(), 'CME_ES2', ES2_max['ret'].max()],
@@ -686,15 +600,14 @@ def CME_NG_max_ret():
 def CME_NQ_max_ret():
     print(NQ_max_ret.sort_values('ret', ascending=False))
 
+print('\n\n3) Get Largest Single Day Return')
+single_day_dict = {'CME_ES': CME_ES_max_ret, 'CME_CL': CME_CL_max_ret, 'CME_GC': CME_GC_max_ret,
+                 'CME_NG': CME_NG_max_ret, 'CME_NQ': CME_NQ_max_ret}
+single = input('Please type a contract root to see its largest single day return (Ex. CME_ES)\nCONTRACT ROOT:\n')
+single_day_dict[single]()
 
-# ES1_table.to_html('ES1.html')
 
-# single_day_dict = {'CME_ES': CME_ES_max_ret, 'CME_CL': CME_CL_max_ret, 'CME_GC': CME_GC_max_ret,
-#                  'CME_NG': CME_NG_max_ret, 'CME_NQ': CME_NQ_max_ret}
-# single = input('Please type a contract root to see its largest single day return \nCONTRACT ROOT:\n')
-# single_day_dict[single]()
-#
-
+#4. Get Largest Annual Return
 #Annual Return = (Settle[last] - Settle[first])/(number of indexes)  * 252
 
 ES1_overall_gain = (ES1_table['Settle'].iat[-1])-(ES1_table['Settle'][0])
@@ -737,14 +650,6 @@ NQ1_overall_gain = (NQ1_table['Settle'].iat[-1])-(NQ1_table['Settle'][0])
 NQ1_ann_gain = (NQ1_overall_gain)/(len(NQ1_table.index)) * 252
 NQ2_overall_gain = (NQ2_table['Settle'].iat[-1])-(NQ2_table['Settle'][0])
 NQ2_ann_gain = (NQ2_overall_gain)/(len(NQ2_table.index)) * 252
-
-
-
-print(NQ1_table['Settle'].head())
-print(NQ1_table['Settle'].tail())
-# print(len(ES1_table.index))
-# print(ES1_overall_gain)
-print(NQ2_ann_gain)
 
 ES_ann_gain = pd.DataFrame(
     [['CME_ES1', ES1_ann_gain],
@@ -804,41 +709,202 @@ def CME_NG_ann_gain():
 def CME_NQ_ann_gain():
     print(NQ_ann_gain.sort_values('annual_return', ascending=False))
 
-
+print('\n\n4) Get Largest Annual Return')
 ann_dict = {'CME_ES': CME_ES_ann_gain, 'CME_CL': CME_CL_ann_gain, 'CME_GC': CME_GC_ann_gain,
                  'CME_NG': CME_NG_ann_gain, 'CME_NQ': CME_NQ_ann_gain}
 ann = input('Please type a contract root to see its annual return \nCONTRACT ROOT:\n')
 ann_dict[ann]()
 
+##Graphing with matplotlib
 
-# print(ES_tr_1_yr_vol)
+def plot_ES1():
+    ES1_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('ES1 Price')
+    plt.show()
 
+def plot_ES2():
+    ES2_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.legend()
+    plt.show()
 
-# print(ES1_max)
-# print(ES1_max[['Date', 'ret']])
-# print(NQ_max_ret)
+def plot_ES3():
+    ES3_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.legend()
+    plt.show()
 
+def plot_ES4():
+    ES4_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.legend()
+    plt.show()
 
-# print(NQ1_max[['Date','ret']])
-# print(NQ2_max[['Date','ret']])
-# print(NG3_max[['Date','ret']])
-# print(NG4_max[['Date','ret']])
+def plot_ES():
+    plt.plot(ES1_table['Settle'], label='ES1', linewidth=1)
+    plt.plot(ES2_table['Settle'], label='ES2', linewidth=1)
+    plt.plot(ES3_table['Settle'], label='ES3', linewidth=1)
+    plt.plot(ES4_table['Settle'], label='ES4', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.show()
 
+def plot_CL1():
+    CL1_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('CL1 Price')
+    plt.show()
 
-# ES_tr_1_yr_vol = pd.DataFrame(
-#     [['CME_ES1', ES1_table['tr_1_yr_vol'].mean]]
-#      # ['CME_ES2', ES2_table['ann_vol'].max()],
-#      # ['CME_ES3', ES3_table['ann_vol'].max()],
-#      # ['CME_ES4', ES4_table['ann_vol'].max()]],
-#     index=None,
-#     columns=['code_name', 'tr_1_yr_vol']
-# )
+def plot_CL2():
+    CL2_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('CL2 Price')
+    plt.show()
 
-#
-# ES_new_data['tr_60_day_ann_vol'] = ES_new_data[['ret']].rolling(60).std() * math.sqrt(252)
-#
-# print(ES_new_data[['tr_60_day_ann_vol']])
+def plot_CL3():
+    CL3_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('CL3 Price')
+    plt.show()
 
+def plot_CL4():
+    CL4_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('CL4 Price')
+    plt.show()
 
-# ESdf.to_pickle('ES.pkl')
-# ESdf2 = pd.read_pickle('ES.pkl')
+def plot_CL():
+    plt.plot(CL1_table['Settle'], label='CL1', linewidth=1)
+    plt.plot(CL2_table['Settle'], label='CL2', linewidth=1)
+    plt.plot(CL3_table['Settle'], label='CL3', linewidth=1)
+    plt.plot(CL4_table['Settle'], label='CL4', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.show()
+
+def plot_GC1():
+    GC1_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('GC1 Price')
+    plt.show()
+
+def plot_GC2():
+    GC2_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('GC2 Price')
+    plt.show()
+
+def plot_GC3():
+    GC3_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('GC3 Price')
+    plt.show()
+
+def plot_GC4():
+    GC4_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('GC4 Price')
+    plt.show()
+
+def plot_GC():
+    plt.plot(GC1_table['Settle'], label='GC1', linewidth=1)
+    plt.plot(GC2_table['Settle'], label='GC2', linewidth=1)
+    plt.plot(GC3_table['Settle'], label='GC3', linewidth=1)
+    plt.plot(GC4_table['Settle'], label='GC4', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.show()
+
+def plot_NG1():
+    NG1_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('NG1 Price')
+    plt.show()
+
+def plot_NG2():
+    NG2_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('NG2 Price')
+    plt.show()
+
+def plot_NG3():
+    NG3_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('NG3 Price')
+    plt.show()
+
+def plot_NG4():
+    NG4_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('NG4 Price')
+    plt.show()
+
+def plot_NG():
+    plt.plot(NG1_table['Settle'], label='NG1', linewidth=1)
+    plt.plot(NG2_table['Settle'], label='NG2', linewidth=1)
+    plt.plot(NG3_table['Settle'], label='NG3', linewidth=1)
+    plt.plot(NG4_table['Settle'], label='NG4', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.show()
+
+def plot_NQ1():
+    NQ1_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('NQ1 Price')
+    plt.show()
+
+def plot_NQ2():
+    NQ2_table['Settle'].plot(label='Settle Price', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.title('NQ2 Price')
+    plt.show()
+
+def plot_NQ():
+    plt.plot(NQ1_table['Settle'], label='NQ1', linewidth=1)
+    plt.plot(NQ2_table['Settle'], label='NQ2', linewidth=1)
+    plt.xlabel('index')
+    plt.ylabel('Settle Price')
+    plt.legend()
+    plt.show()
+
+print('\n\nBonus: Charting Contracts')
+plot_dict = {
+    'CME_ES1': plot_ES1, 'CME_ES2': plot_ES2,'CME_ES3': plot_ES3,'CME_ES4': plot_ES4, 'CME_ES': plot_ES,
+    'CME_CL1': plot_CL1, 'CME_CL2': plot_CL2,'CME_CL3': plot_CL3,'CME_CL4': plot_CL4, 'CME_CL': plot_CL,
+    'CME_GC1': plot_GC1, 'CME_GC2': plot_GC2,'CME_GC3': plot_GC3,'CME_GC4': plot_GC4, 'CME_GC': plot_GC,
+    'CME_NG1': plot_NG1, 'CME_NG2': plot_NG2,'CME_NG3': plot_NG3,'CME_NG4': plot_NG4, 'CME_NG': plot_NG,}
+plot = input('Please type a contract (Ex. CME_ES1) or a contract root (Ex. CME_ES) to see its settle points graphed \nCONTRACT:\n')
+plot_dict[plot]()
