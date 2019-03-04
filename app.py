@@ -905,6 +905,7 @@ plot_dict = {
     'CME_ES1': plot_ES1, 'CME_ES2': plot_ES2,'CME_ES3': plot_ES3,'CME_ES4': plot_ES4, 'CME_ES': plot_ES,
     'CME_CL1': plot_CL1, 'CME_CL2': plot_CL2,'CME_CL3': plot_CL3,'CME_CL4': plot_CL4, 'CME_CL': plot_CL,
     'CME_GC1': plot_GC1, 'CME_GC2': plot_GC2,'CME_GC3': plot_GC3,'CME_GC4': plot_GC4, 'CME_GC': plot_GC,
-    'CME_NG1': plot_NG1, 'CME_NG2': plot_NG2,'CME_NG3': plot_NG3,'CME_NG4': plot_NG4, 'CME_NG': plot_NG,}
+    'CME_NG1': plot_NG1, 'CME_NG2': plot_NG2,'CME_NG3': plot_NG3,'CME_NG4': plot_NG4, 'CME_NG': plot_NG,
+    'CME_NQ1': plot_NQ1, 'CME_NQ2': plot_NQ2,'CME_NQ': plot_NQ}
 plot = input('Please type a contract (Ex. CME_ES1) or a contract root (Ex. CME_ES) to see its settle points graphed \nCONTRACT:\n')
 plot_dict[plot]()
