@@ -16,7 +16,7 @@ I then created functions to calculate volatility, annualized volatility, trailin
 and largest annual return.  
 
 ## Learning
-Before starting this challenge, I had briefly begun teaching myself python.  This was my first time using the Quandl, Pandas, Matplotlib, and
+Before starting this challenge, I had briefly begun teaching myself python.  This was my first time using Quandl, Pandas, Matplotlib, and
 MySQL Workbench. Hence, I dedicated a lot of my time during the past week to educating myself in these new technologies through tutorials and documentation.
 This was also my first time using development to dive deeply into data analysis.
 
